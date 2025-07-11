@@ -2,7 +2,7 @@
 
 **beardctl** is a Go-based CLI tool that simplifies the setup and deployment of the *Beard* web app into AWS. It automates key infrastructure tasks using Terraform and Ansible and provides basic self-healing capabilities via a monitoring agent.
 
-> **Note:** This tool is currently in **pre-release** and has only been tested in the **AWS commercial us-east-1** region. Deployments in other regions may fail.
+> **Note:** This tool is currently in **pre-release** and has only been tested in the **AWS commercial us-east-1** region using Administrator IAM Role. Deployments in other regions may fail.
 
 ---
 
@@ -45,7 +45,7 @@ This checks for:
 - Ansible
 - Terraform
 - AWS CLI
-- AWS credentials
+- AWS credentials (make sure your default region is us-east-1 and using Administrator Role)
 
 > ⚠️ If you're using tools like `tfenv` or other custom wrappers, running `beardctl env setup` may cause issues.
 
