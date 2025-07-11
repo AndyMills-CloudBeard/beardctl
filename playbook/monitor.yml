@@ -1,0 +1,50 @@
+---
+- name: Configure Beardctl Monitoring Service
+  hosts: all
+  become: yes
+  vars:
+    alb_dns: ""
+    instance_id: ""
+    s3_bucket: ""
+  tasks:
+
+    - name: Ensure awscli is installed
+      package:
+        name: awscli
+        state: present
+
+    - name: Copy beardctl-monitor binary to EC2 instance
+      copy:
+        src: ../scripts/beardctl-monitor
+        dest: /usr/local/bin/beardctl-monitor
+        mode: '0755'
+
+    - name: Create systemd service for beardctl-monitor
+      copy:
+        dest: /etc/systemd/system/beardctl-monitor.service
+        content: |
+          [Unit]
+          Description=Beardctl Monitoring Service
+          After=network.target
+
+          [Service]
+          ExecStart=/usr/local/bin/beardctl-monitor {{ alb_dns }} {{ instance_id }} {{ s3_bucket }}
+          Restart=always
+          RestartSec=5
+          StandardOutput=append:/var/log/beardctl-monitor.log
+          StandardError=append:/var/log/beardctl-monitor.log
+
+          [Install]
+          WantedBy=multi-user.target
+      notify:
+        - Reload systemd
+
+    - name: Enable and start beardctl-monitor service
+      systemd:
+        name: beardctl-monitor
+        enabled: true
+        state: started
+
+  handlers:
+    - name: Reload systemd
+      command: systemctl daemon-reload

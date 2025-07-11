@@ -1,0 +1,31 @@
+---
+- name: Configure NGINX server
+  hosts: web
+  become: yes
+  tasks:
+    - name: Install NGINX
+      ansible.builtin.yum:
+        name: nginx
+        state: present
+
+    - name: Start and enable NGINX
+      ansible.builtin.systemd:
+        name: nginx
+        state: started
+        enabled: true
+
+    - name: Copy index.html
+      ansible.builtin.copy:
+        src: ../assets/index.html
+        dest: /usr/share/nginx/html/index.html
+        owner: root
+        group: root
+        mode: '0644'
+
+    - name: Copy beard.png
+      ansible.builtin.copy:
+        src: ../assets/beard.png
+        dest: /usr/share/nginx/html/beard.png
+        owner: root
+        group: root
+        mode: '0644'
