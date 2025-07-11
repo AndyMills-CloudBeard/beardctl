@@ -49,7 +49,7 @@ This checks for:
 
 > ⚠️ If you're using tools like `tfenv` or other custom wrappers, running `beardctl env setup` may cause issues.
 
-To install all required dependencies on macOS:
+To install all required dependencies on macOS (ONLY IF MISSING ANY):
 
 ```sh
 beardctl env setup
