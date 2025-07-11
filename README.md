@@ -75,7 +75,7 @@ This generates `~/.ssh/beardctl-key` and adds it to EC2 key pairs.
 
 ## 🏗️ Deploying the Beard Web App
 
-Run the following from the root directory:
+Run the following from the root directory of the repo (You may need to exit the ssh ec2 session or open a new terminal):
 
 ```sh
 beardctl deploy terraform/
