@@ -25,6 +25,13 @@ curl -L -o beardctl.zip https://github.com/AndyMills-CloudBeard/beardctl/release
 
 ```
 
+Setup working repo
+
+```sh
+git clone https://github.com/AndyMills-CloudBeard/beardctl.git && cd beardctl
+
+```
+
 ### 2. Check Your Environment
 
 Use `beardctl` to verify if your environment is ready:
