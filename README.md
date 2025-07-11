@@ -18,7 +18,7 @@
 | macOS    | amd64 | [beardctl-v0.1.0-darwin-amd64.zip](https://github.com/AndyMills-CloudBeard/beardctl/releases/download/v0.1.0/beardctl-v0.1.0-darwin-amd64.zip) |
 | Linux    | amd64 | [beardctl-v0.1.0-linux-amd64.zip](https://github.com/AndyMills-CloudBeard/beardctl/releases/download/v0.1.0/beardctl-v0.1.0-linux-amd64.zip) |
 
-Run the following to download and install the `beardctl` binary (MacOS ARM64 if other os update url from above ^):
+NOTE: You will be prompted for your sudo password as this does install to PATH. Run the following to download and install the `beardctl` binary (MacOS ARM64 if other os update url from above ^):
 
 ```sh
 curl -L -o beardctl.zip https://github.com/AndyMills-CloudBeard/beardctl/releases/download/v0.1.0/beardctl-v0.1.0-darwin-arm64.zip && unzip beardctl.zip && chmod +x beardctl-darwin-arm64 && sudo mv beardctl-darwin-arm64 /usr/local/bin/beardctl && rm -f beardctl.zip && beardctl --help
@@ -171,6 +171,12 @@ aws ec2 delete-key-pair --key-name beardctl-key
 ```
 
 ---
+
+## Clean up GitHub Repo
+
+```sh
+cd .. && rm -rf beardctl
+```
 
 ## 📌 Known Limitations
 
