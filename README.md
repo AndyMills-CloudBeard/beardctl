@@ -165,6 +165,17 @@ To uninstall `beardctl`, run the inverse of the install command used earlier. Fo
 sudo rm /usr/local/bin/beardctl
 ```
 
+## Clean up local SSH Key and AWS Keypair
+
+```sh
+sudo rm /Users/$(whoami)/.ssh/beardctl-key.pub && sudo rm /Users/$(whoami)/.ssh/beardctl-key
+
+```
+
+```sh
+aws ec2 delete-key-pair --key-name beardctl-key
+```
+
 ---
 
 ## 📌 Known Limitations
