@@ -162,7 +162,7 @@ done
 To uninstall `beardctl`, run the inverse of the install command used earlier. For example:
 
 ```sh
-rm /usr/local/bin/beardctl
+sudo rm /usr/local/bin/beardctl
 ```
 
 ---
