@@ -18,7 +18,7 @@
 | macOS    | amd64 | [beardctl-v0.1.0-darwin-amd64.zip](https://github.com/AndyMills-CloudBeard/beardctl/releases/download/v0.1.0/beardctl-v0.1.0-darwin-amd64.zip) |
 | Linux    | amd64 | [beardctl-v0.1.0-linux-amd64.zip](https://github.com/AndyMills-CloudBeard/beardctl/releases/download/v0.1.0/beardctl-v0.1.0-linux-amd64.zip) |
 
-Run the following to download and install the `beardctl` binary:
+Run the following to download and install the `beardctl` binary (MacOS ARM64 if other os update url from above ^):
 
 ```sh
 curl -L -o beardctl.zip https://github.com/AndyMills-CloudBeard/beardctl/releases/download/v0.1.0/beardctl-v0.1.0-darwin-arm64.zip && unzip beardctl.zip && chmod +x beardctl-darwin-arm64 && sudo mv beardctl-darwin-arm64 /usr/local/bin/beardctl && beardctl --help
