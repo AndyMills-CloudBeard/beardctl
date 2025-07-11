@@ -140,21 +140,15 @@ sudo cat /var/log/beardctl-monitor.log
 
 To teardown the AWS infrastructure in your account run the following beardctl command from the root of the repo (You may need to exit the ssh ec2 session or open a new terminal).
 
+> **Note:** The S3 Bucket will have items in it. The Beardctl tool does not currently support directly deleting items. Instead run the aws cli command to delete the bucket items BEFORE Destroying with beardctl.
+
 ```sh
-beardctl destroy terraform
+bucket=$(aws s3api list-buckets --query "Buckets[].Name" --output text | tr '\t' '\n' | grep '^beardctl-s3-errorlog-bucket-' | head -n1) && echo "Target bucket: $bucket" && aws s3api list-object-versions --bucket "$bucket" --output json | jq -r '.Versions[]?, .DeleteMarkers[]? | [.Key, .VersionId] | @tsv' | while IFS=$'\t' read -r key version; do aws s3api delete-object --bucket "$bucket" --key "$key" --version-id "$version"; done
+
 ```
 
-> **Note:** The S3 Bucket will have items in it. The Beardctl tool does not currently support directly deleting items. Instead run the aws cli command to delete the bucket and items.
-
 ```sh
-for bucket in $(aws s3api list-buckets --query 'Buckets[].Name' --output text | tr '\t' '\n' | grep '^beardctl-s3-errorlog-bucket-'); do
-  echo "Deleting bucket: $bucket"
-  aws s3api list-object-versions --bucket "$bucket" --output json | jq -r '.Versions[]?, .DeleteMarkers[]? | [.Key, .VersionId] | @tsv' | while IFS=$'\t' read -r key version; do
-    aws s3api delete-object --bucket "$bucket" --key "$key" --version-id "$version"
-  done
-  aws s3api delete-bucket --bucket "$bucket"
-done
-
+beardctl destroy terraform
 ```
 
 ## 🧼 Uninstall beardctl
