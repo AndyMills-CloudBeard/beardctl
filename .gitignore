@@ -71,3 +71,6 @@ override.tf.json
 
 # Keys
 *.pem
+
+# # Beardctl
+# beardctl
