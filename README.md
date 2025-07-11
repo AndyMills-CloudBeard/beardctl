@@ -21,7 +21,7 @@
 Run the following to download and install the `beardctl` binary:
 
 ```sh
-curl -L -o beardctl.zip https://github.com/AndyMills-CloudBeard/beardctl/releases/download/v0.1.0/beardctl-v0.1.0-darwin-arm64.zip && unzip beardctl.zip && chmod +x beardctl-darwin-arm64 && sudo mv beardctl-darwin-arm64 /usr/local/bin/beardctl && echo "✅ beardctl installed!" && beardctl --help
+curl -L -o beardctl.zip https://github.com/AndyMills-CloudBeard/beardctl/releases/download/v0.1.0/beardctl-v0.1.0-darwin-arm64.zip && unzip beardctl.zip && chmod +x beardctl-darwin-arm64 && sudo mv beardctl-darwin-arm64 /usr/local/bin/beardctl && beardctl --help
 
 ```
 
