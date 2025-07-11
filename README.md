@@ -144,6 +144,19 @@ To teardown the AWS infrastructure in your account run the following beardctl co
 beardctl destroy terraform
 ```
 
+> **Note:** The S3 Bucket will have items in it. The Beardctl tool does not currently support directly deleting items. Instead run the aws cli command to delete the bucket and items.
+
+```sh
+for bucket in $(aws s3api list-buckets --query 'Buckets[].Name' --output text | tr '\t' '\n' | grep '^beardctl-s3-errorlog-bucket-'); do
+  echo "Deleting bucket: $bucket"
+  aws s3api list-object-versions --bucket "$bucket" --output json | jq -r '.Versions[]?, .DeleteMarkers[]? | [.Key, .VersionId] | @tsv' | while IFS=$'\t' read -r key version; do
+    aws s3api delete-object --bucket "$bucket" --key "$key" --version-id "$version"
+  done
+  aws s3api delete-bucket --bucket "$bucket"
+done
+
+```
+
 ## 🧼 Uninstall beardctl
 
 To uninstall `beardctl`, run the inverse of the install command used earlier. For example:

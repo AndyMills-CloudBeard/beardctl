@@ -58,11 +58,15 @@ module "ec2_beard" {
   global_tags = {}
 }
 
+resource "random_id" "bucket_suffix" {
+  byte_length = 4
+}
+
 # Create error log bucket
 module "s3_bucket_errorlog" {
   source = "github.com/Coalfire-CF/terraform-aws-s3?ref=v1.0.4"
 
-  name                                 = "beardctl-s3-errorlog-bucket"
+  name                                 = "beardctl-s3-errorlog-bucket-${random_id.bucket_suffix.hex}"
   enable_lifecycle_configuration_rules = false
   enable_kms                           = true
   enable_server_side_encryption        = true
