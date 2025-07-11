@@ -157,6 +157,7 @@ rm /usr/local/bin/beardctl
 ## 📌 Known Limitations
 
 - Only works in AWS `us-east-1`
+- Only tested with Administrator Role
 
 ---
 
