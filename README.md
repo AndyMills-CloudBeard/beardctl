@@ -75,7 +75,7 @@ This generates `~/.ssh/beardctl-key` and adds it to EC2 key pairs.
 
 ## 🏗️ Deploying the Beard Web App
 
-Run the following from the root directory of the repo (You may need to exit the ssh ec2 session or open a new terminal):
+Run the following from the root directory of the repo:
 
 ```sh
 beardctl deploy terraform/
@@ -138,7 +138,7 @@ sudo cat /var/log/beardctl-monitor.log
 
 ## 🌐 App Teardown
 
-To teardown the AWS infrastructure in your account run the following beardctl command.
+To teardown the AWS infrastructure in your account run the following beardctl command from the root of the repo (You may need to exit the ssh ec2 session or open a new terminal).
 
 ```sh
 beardctl destroy terraform
